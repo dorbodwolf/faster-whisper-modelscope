@@ -5,9 +5,13 @@
 修改Faster Whisper支持从modelscope上下载whisper模型，目前仅支持```'keepitsimple/faster-whisper-large-v3'```
 
 ## 安装方法
+
 clone仓库
+
 ```git clone git@github.com:dorbodwolf/faster-whisper-modelscope.git```
+
 安装
+
 ```pip install -e faster-whisper-modelscope```
 
 ## 调用方法
