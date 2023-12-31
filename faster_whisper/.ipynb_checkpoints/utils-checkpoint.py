@@ -4,15 +4,24 @@ import re
 
 from typing import List, Optional
 
-# import huggingface_hub
-from modelscope.hub.snapshot_download import snapshot_download
-
+import huggingface_hub
 import requests
 
 from tqdm.auto import tqdm
 
 _MODELS = {
-    "large-v3-modelscope": "keepitsimple/faster-whisper-large-v3"
+    "tiny.en": "Systran/faster-whisper-tiny.en",
+    "tiny": "Systran/faster-whisper-tiny",
+    "base.en": "Systran/faster-whisper-base.en",
+    "base": "Systran/faster-whisper-base",
+    "small.en": "Systran/faster-whisper-small.en",
+    "small": "Systran/faster-whisper-small",
+    "medium.en": "Systran/faster-whisper-medium.en",
+    "medium": "Systran/faster-whisper-medium",
+    "large-v1": "Systran/faster-whisper-large-v1",
+    "large-v2": "Systran/faster-whisper-large-v2",
+    "large-v3": "Systran/faster-whisper-large-v3",
+    "large": "Systran/faster-whisper-large-v3",
 }
 
 
@@ -37,12 +46,12 @@ def download_model(
     local_files_only: bool = False,
     cache_dir: Optional[str] = None,
 ):
-    """Downloads a CTranslate2 Whisper model from the modelscope hub.
+    """Downloads a CTranslate2 Whisper model from the Hugging Face Hub.
 
     Args:
-      size_or_id: Size of the model to download from modelscope
+      size_or_id: Size of the model to download from https://huggingface.co/guillaumekln
         (tiny, tiny.en, base, base.en, small, small.en medium, medium.en, large-v1, large-v2,
-        large-v3, large), or a CTranslate2-converted model ID from the modelscope
+        large-v3, large), or a CTranslate2-converted model ID from the Hugging Face Hub
         (e.g. Systran/faster-whisper-large-v3).
       output_dir: Directory where the model should be saved. If not set, the model is saved in
         the cache directory.
@@ -88,15 +97,14 @@ def download_model(
         kwargs["cache_dir"] = cache_dir
 
     try:
-        snapshot_download(repo_id)
+        return huggingface_hub.snapshot_download(repo_id, **kwargs)
     except (
-        # huggingface_hub.utils.HfHubHTTPError,
-        ValueError,
+        huggingface_hub.utils.HfHubHTTPError,
         requests.exceptions.ConnectionError,
     ) as exception:
         logger = get_logger()
         logger.warning(
-            "An error occured while synchronizing the model %s from the modelscope hub:\n%s",
+            "An error occured while synchronizing the model %s from the Hugging Face Hub:\n%s",
             repo_id,
             exception,
         )
@@ -105,7 +113,7 @@ def download_model(
         )
 
         kwargs["local_files_only"] = True
-        return snapshot_download(repo_id)
+        return huggingface_hub.snapshot_download(repo_id, **kwargs)
 
 
 def format_timestamp(

@@ -126,7 +126,7 @@ class WhisperModel:
                 local_files_only=local_files_only,
                 cache_dir=download_root,
             )
-
+        print(model_path)
         self.model = ctranslate2.models.Whisper(
             model_path,
             device=device,

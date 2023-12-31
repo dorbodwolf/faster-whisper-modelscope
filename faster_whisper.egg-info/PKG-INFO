@@ -1,8 +1,30 @@
+Metadata-Version: 2.1
+Name: faster-whisper
+Version: 0.10.0
+Summary: Faster Whisper transcription with CTranslate2
+Home-page: https://github.com/guillaumekln/faster-whisper
+Author: Guillaume Klein
+License: MIT
+Keywords: openai whisper speech ctranslate2 inference quantization transformer
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: conversion
+Provides-Extra: dev
+License-File: LICENSE
+
 [![CI](https://github.com/guillaumekln/faster-whisper/workflows/CI/badge.svg)](https://github.com/guillaumekln/faster-whisper/actions?query=workflow%3ACI) [![PyPI version](https://badge.fury.io/py/faster-whisper.svg)](https://badge.fury.io/py/faster-whisper)
-
-
-# 使用说明
-修改Faster Whisper支持从modelscope上下载whisper模型，目前仅支持```'keepitsimple/faster-whisper-large-v3'```
 
 # Faster Whisper transcription with CTranslate2
 
