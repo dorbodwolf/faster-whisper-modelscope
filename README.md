@@ -4,6 +4,20 @@
 # 使用说明
 修改Faster Whisper支持从modelscope上下载whisper模型，目前仅支持```'keepitsimple/faster-whisper-large-v3'```
 
+使用方法：
+基于此，在阿里云加载whisper的方法如下：
+```python
+# 加载whisper模型
+import torch
+from faster_whisper import WhisperModel
+# 位于本地的模型权重文件
+model_path = '/mnt/workspace/.cache/modelscope/keepitsimple/faster-whisper-large-v3'
+# Loading Whisper
+device = "cuda" if torch.cuda.is_available() else "cpu" 
+print("Loading Whisper Model!")
+asr_model = WhisperModel(model_path, device=device, compute_type="float16", local_files_only=True)
+```
+
 # Faster Whisper transcription with CTranslate2
 
 **faster-whisper** is a reimplementation of OpenAI's Whisper model using [CTranslate2](https://github.com/OpenNMT/CTranslate2/), which is a fast inference engine for Transformer models.
